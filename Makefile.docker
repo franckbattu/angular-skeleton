@@ -1,0 +1,41 @@
+USER_ID = $(shell id -u)
+GROUP_ID = $(shell id -g)
+CYPRESS_VERSION = 13.13.2
+dc := USER_ID=${USER_ID} GROUP_ID=${GROUP_ID} @docker compose
+
+.DEFAULT_GOAL := help
+.PHONY: help
+
+help: ## Show help and available commands
+	@echo "Available commands:"
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
+
+up: ## Start stack
+	$(dc) up -d
+
+down: ## Down stack
+	$(dc) down
+
+build: ## Build stack
+	$(dc) build
+
+install: ## Install dependencies on webapp
+	$(dc) exec webapp /bin/bash -c "rm -f package-lock.json"
+	$(dc) exec webapp /bin/bash -c "rm -rf node_modules"
+	$(dc) exec webapp /bin/bash -c "rm -rf .angular"
+	$(dc) exec webapp /bin/bash -c "npm cache clean --force"
+	$(dc) exec webapp /bin/bash -c "npm install"
+
+bash: ## Use bash in webapp
+	$(dc) exec webapp /bin/bash
+
+quality: ## Check quality on webapp
+	$(dc) exec webapp /bin/bash -c "npm run lint:fix"
+	$(dc) exec webapp /bin/bash -c "npm run format:fix"
+	$(dc) exec webapp /bin/bash -c "npm run tools:check-format"
+
+webapp-start: ## Start webapp
+	$(dc) exec webapp /bin/bash -c "npm run start:webapp -- --host 0.0.0.0"
+
+webapp-e2e: ## Run webapp e2e tests
+	@docker container run -it --rm -v $(shell pwd):/e2e -w /e2e/projects/webapp-e2e --network host cypress/included:$(CYPRESS_VERSION)

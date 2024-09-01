@@ -1,0 +1,18 @@
+<button
+  [disabled]="isDisabled()"
+  sktButton
+  [theme]="theme()"
+  [weight]="weight()"
+  [width]="width()"
+  (click)="clickEvent.emit()"
+  [ngClass]="class()"
+>
+  <div class="flex items-center gap-2">
+    @if (loading()) {
+      <div role="status">
+        <skt-spinner size="sm" />
+      </div>
+    }
+    <ng-content />
+  </div>
+</button>

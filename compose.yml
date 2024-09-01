@@ -1,0 +1,12 @@
+services:
+  webapp:
+    build:
+      context: docker
+      args:
+        USER_ID: '${USER_ID}'
+        GROUP_ID: '${GROUP_ID}'
+    container_name: webapp
+    ports:
+      - 4500:4200
+    volumes:
+      - .:/opt/webapp/
