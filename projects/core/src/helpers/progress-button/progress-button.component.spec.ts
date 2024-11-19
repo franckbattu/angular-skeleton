@@ -4,7 +4,6 @@ import { Component, provideExperimentalZonelessChangeDetection } from '@angular/
 import { By } from '@angular/platform-browser';
 
 @Component({
-  standalone: true,
   template: `<skt-progress-button [loading]="true" [disabled]="false">Test</skt-progress-button>`,
   imports: [ProgressButtonComponent],
 })

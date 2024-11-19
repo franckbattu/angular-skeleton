@@ -1,0 +1,39 @@
+name: Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: choice
+        description: Select the environment
+        required: true
+        options:
+          - production
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ github.event.inputs.environment }}
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Log in to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+
+      - uses: google-github-actions/get-gke-credentials@v2
+        with:
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
+          cluster_name: ${{ secrets.GCP_CLUSTER_NAME }}
+          location: ${{ secrets.GCP_CLUSTER_LOCATION }}
+
+      - name: Deploy to Kubernetes (GKE)
+        env:
+          GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+        run: |
+          cat k8s/service.yaml | envsubst | kubectl apply -f -
+          cat k8s/deployment.yaml | envsubst | kubectl apply -f -
+          kubectl rollout status deployment/angular-skeleton

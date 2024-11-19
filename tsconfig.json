@@ -5,7 +5,8 @@
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "paths": {
-      "@skt/core": ["./projects/core/src/public-api", "./dist/core"]
+      "@skt/core": ["./projects/core/src/public-api", "./dist/core"],
+      "@skt/webapp/model": ["./projects/webapp/src/app/model/index.ts"]
     },
     "strict": true,
     "noImplicitOverride": true,
@@ -23,7 +24,7 @@
     "importHelpers": true,
     "target": "ES2022",
     "module": "ES2022",
-    "lib": ["ES2022", "dom"]
+    "lib": ["ES2022", "dom"],
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: angular-skeleton
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  selector:
+    matchLabels:
+      app: angular-skeleton
+  template:
+    metadata:
+      labels:
+        app: angular-skeleton
+    spec:
+      containers:
+        - name: angular-container
+          image: europe-west1-docker.pkg.dev/$GCP_PROJECT_ID/angular-skeleton/angular-skeleton:latest
+          ports:
+            - containerPort: 80
+          resources:
+            limits:
+              ephemeral-storage: 1Gi
+            requests:
+              cpu: 500m
+              ephemeral-storage: 1Gi
+              memory: 2Gi

@@ -29,6 +29,9 @@
             "prerender": true,
             "ssr": {
               "entry": "projects/webapp/server.ts"
+            },
+            "security": {
+              "autoCsp": true
             }
           },
           "configurations": {
