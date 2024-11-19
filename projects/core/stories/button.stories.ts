@@ -6,6 +6,7 @@ import { ProgressButtonComponent } from '../src/helpers/progress-button/progress
 @Component({
   selector: 'sb-button',
   template: ` <button sktButton [weight]="weight" [theme]="theme">Button Action</button>`,
+  standalone: false,
 })
 class ButtonComponent {
   @Input() theme: ButtonTheme;

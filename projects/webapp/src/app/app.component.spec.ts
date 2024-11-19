@@ -4,7 +4,6 @@ import { Component, provideExperimentalZonelessChangeDetection } from '@angular/
 import { By } from '@angular/platform-browser';
 
 @Component({
-  standalone: true,
   selector: 'router-outlet',
   template: '<ng-content></ng-content>',
 })

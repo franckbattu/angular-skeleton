@@ -9,21 +9,21 @@ const baseClasses: string =
   'shadow-md hover:shadow-lg focus:shadow-none active:shadow-none disabled:pointer-events-none disabled:opacity-50 ' +
   'disabled:shadow-none ml-2';
 
-const themeClasses: { [key in ButtonTheme]: string } = {
+const themeClasses: Record<ButtonTheme, string> = {
   primary: `${baseClasses} text-white bg-blue-600 focus:bg-blue-700 active:bg-blue-700 hover:bg-blue-700`,
   warning: `${baseClasses} text-white bg-yellow-500 focus:bg-yellow-600 active:bg-yellow-600 hover:bg-yellow-600`,
   'outline-primary': `${baseClasses} text-blue-600 hover:text-white border border-blue-600 hover:bg-blue-700`,
   'outline-dark': `${baseClasses} text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900`,
 };
 
-const weightClasses: { [key in ButtonWeight]: string } = {
+const weightClasses: Record<ButtonWeight, string> = {
   bold: 'font-bold',
   normal: 'font-normal',
   semi: 'font-semi',
   light: 'font-light',
 };
 
-const widthClasses: { [key in ButtonWidth]: string } = {
+const widthClasses: Record<ButtonWidth, string> = {
   full: 'w-full',
   auto: 'w-auto',
 };
@@ -56,7 +56,6 @@ const widthClasses: { [key in ButtonWidth]: string } = {
  * throughout the application.
  */
 @Directive({
-  standalone: true,
   selector: 'button[sktButton], a[sktButton]',
 })
 export class ButtonDirective {

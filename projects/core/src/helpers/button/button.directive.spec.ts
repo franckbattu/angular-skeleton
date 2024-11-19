@@ -5,6 +5,7 @@ import { ButtonDirective, ButtonTheme, ButtonWeight, ButtonWidth } from './butto
 
 @Component({
   template: '<button sktButton [theme]="theme" [weight]="weight" [width]="width"></button>',
+  standalone: false,
 })
 class ButtonDirectiveComponent {
   theme: ButtonTheme;

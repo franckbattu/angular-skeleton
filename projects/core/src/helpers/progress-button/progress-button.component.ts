@@ -39,7 +39,6 @@ import { SpinnerComponent } from '../spinner/spinner.component';
  * and reusable button instances across the application.
  */
 @Component({
-  standalone: true,
   selector: 'skt-progress-button',
   templateUrl: './progress-button.component.html',
   imports: [NgClass, ButtonDirective, SpinnerComponent],

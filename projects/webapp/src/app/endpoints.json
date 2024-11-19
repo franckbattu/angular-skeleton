@@ -1,3 +1,4 @@
 {
-  "user": "users/${userId}"
+  "user": "users/${userId}",
+  "users": "users"
 }

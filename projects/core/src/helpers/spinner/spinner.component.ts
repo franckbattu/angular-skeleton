@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { NgClass } from '@angular/common';
 
 @Component({
-  standalone: true,
   selector: 'skt-spinner',
   templateUrl: './spinner.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
