@@ -1,4 +1,4 @@
-import { ApplicationConfig, provideExperimentalZonelessChangeDetection, Provider } from '@angular/core';
+import { ApplicationConfig, provideZonelessChangeDetection, Provider } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
@@ -18,7 +18,7 @@ const libProviders: Provider[] = [...endpointProviders, ...loggerProviders];
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideExperimentalZonelessChangeDetection(),
+    provideZonelessChangeDetection(),
     provideRouter(routes),
     provideClientHydration(),
     provideHttpClient(withFetch()),

@@ -1,7 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SpinnerComponent } from './spinner.component';
 import { By } from '@angular/platform-browser';
-import { provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { provideZonelessChangeDetection } from '@angular/core';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
 describe('SpinnerComponent', () => {
   let fixture: ComponentFixture<SpinnerComponent>;
@@ -10,14 +11,17 @@ describe('SpinnerComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [SpinnerComponent],
-      providers: [provideExperimentalZonelessChangeDetection()],
+      providers: [provideZonelessChangeDetection()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(SpinnerComponent);
     component = fixture.componentInstance;
-    component.size = 'lg';
+    fixture.componentRef.setInput('size', 'lg');
     fixture.detectChanges();
   });
+
+  // TODO: remove after update to Angular 20
+  afterEach(() => TestBed.resetTestingModule());
 
   it('should be created', () => {
     expect(component).toBeTruthy();
@@ -26,7 +30,7 @@ describe('SpinnerComponent', () => {
   it('should render correct classes', () => {
     const svg = fixture.debugElement.query(By.css('svg'));
 
-    expect(svg.classes['h-12']).toBeTrue();
-    expect(svg.classes['w-12']).toBeTrue();
+    expect(svg.classes['h-12']).toBe(true);
+    expect(svg.classes['w-12']).toBe(true);
   });
 });

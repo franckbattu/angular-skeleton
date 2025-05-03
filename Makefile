@@ -9,8 +9,7 @@ clean: ## Clean generated folders
 	rm -rf .angular
 	rm -rf dist
 
-install: ## Install dependencies
-	$(MAKE) clean
+install: clean ## Install dependencies
 	rm -f package-lock.json
 	rm -rf node_modules
 	npm cache clean --force

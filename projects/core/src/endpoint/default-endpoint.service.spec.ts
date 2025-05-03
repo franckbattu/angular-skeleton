@@ -1,7 +1,8 @@
 import { inject, TestBed } from '@angular/core/testing';
 import { DefaultEndpointService } from './default-endpoint.service';
 import { ENDPOINT_CONFIG, EndpointConfig } from './endpoint-tokens';
-import { provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { provideZonelessChangeDetection } from '@angular/core';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
 const endpoints: EndpointConfig = {
   endpoints: {
@@ -23,12 +24,15 @@ describe('DefaultEndpointService', () => {
           provide: ENDPOINT_CONFIG,
           useValue: endpoints,
         },
-        provideExperimentalZonelessChangeDetection(),
+        provideZonelessChangeDetection(),
       ],
     });
 
     service = TestBed.inject(DefaultEndpointService);
   });
+
+  // TODO: remove after update to Angular 20
+  afterEach(() => TestBed.resetTestingModule());
 
   it('should DefaultEndpointService be injected', inject([DefaultEndpointService], (service: DefaultEndpointService) =>
     expect(service).toBeTruthy(),

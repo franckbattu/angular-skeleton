@@ -1,11 +1,12 @@
-import { Component, provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { Component, provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 import { ButtonDirective, ButtonTheme, ButtonWeight, ButtonWidth } from './button.directive';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { By } from '@angular/platform-browser';
 
 @Component({
   template: '<button sktButton [theme]="theme" [weight]="weight" [width]="width"></button>',
-  standalone: false,
+  imports: [ButtonDirective],
 })
 class ButtonDirectiveComponent {
   theme: ButtonTheme;
@@ -17,16 +18,18 @@ describe('ButtonDirective', () => {
   let fixture: ComponentFixture<ButtonDirectiveComponent>;
   let component: ButtonDirectiveComponent;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [ButtonDirective],
-      declarations: [ButtonDirectiveComponent],
-      providers: [provideExperimentalZonelessChangeDetection()],
-    });
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [ButtonDirectiveComponent],
+      providers: [provideZonelessChangeDetection()],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ButtonDirectiveComponent);
     component = fixture.componentInstance;
   });
+
+  // TODO: remove after update to Angular 20
+  afterEach(() => TestBed.resetTestingModule());
 
   it('should be created', () => {
     expect(component).toBeTruthy();
@@ -41,7 +44,7 @@ describe('ButtonDirective', () => {
 
     const element = fixture.debugElement.query(By.css('button'));
     expect(element.classes).toEqual(
-      jasmine.objectContaining({
+      expect.objectContaining({
         'text-blue-600': true,
         'hover:text-white': true,
         'font-bold': true,

@@ -1,16 +1,16 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { ButtonDirective, ButtonTheme, ButtonWeight } from '../src/helpers/button/button.directive';
 import { ProgressButtonComponent } from '../src/helpers/progress-button/progress-button.component';
 
 @Component({
   selector: 'sb-button',
-  template: ` <button sktButton [weight]="weight" [theme]="theme">Button Action</button>`,
+  template: ` <button sktButton [weight]="weight()" [theme]="theme()">Button Action</button>`,
   standalone: false,
 })
 class ButtonComponent {
-  @Input() theme: ButtonTheme;
-  @Input() weight: ButtonWeight;
+  readonly theme = input<ButtonTheme>();
+  readonly weight = input<ButtonWeight>();
 }
 
 const meta: Meta<ButtonComponent> = {
@@ -23,7 +23,7 @@ const meta: Meta<ButtonComponent> = {
       declarations: [ButtonComponent],
     }),
   ],
-  render: (args: ButtonComponent) => ({
+  render: (args) => ({
     props: args,
   }),
 };

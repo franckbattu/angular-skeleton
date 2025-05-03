@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { NgClass } from '@angular/common';
 
 @Component({
@@ -8,10 +8,10 @@ import { NgClass } from '@angular/common';
   imports: [NgClass],
 })
 export class SpinnerComponent {
-  @Input() size: 'sm' | 'md' | 'lg' | 'xl' = 'md';
+  size = input<'sm' | 'md' | 'lg' | 'xl'>('md');
 
   get spinnerClass(): string {
-    switch (this.size) {
+    switch (this.size()) {
       case 'sm': {
         return 'h-4 w-4';
       }

@@ -1,7 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProgressButtonComponent } from './progress-button.component';
-import { Component, provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { Component, provideZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 @Component({
   template: `<skt-progress-button [loading]="true" [disabled]="false">Test</skt-progress-button>`,
@@ -18,7 +19,7 @@ describe('ProgressButtonComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ProgressButtonComponent, HostComponent],
-      providers: [provideExperimentalZonelessChangeDetection()],
+      providers: [provideZonelessChangeDetection()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ProgressButtonComponent);
@@ -27,6 +28,9 @@ describe('ProgressButtonComponent', () => {
     fixture.componentRef.setInput('disabled', false);
     fixture.detectChanges();
   });
+
+  // TODO: remove after update to Angular 20
+  afterEach(() => TestBed.resetTestingModule());
 
   it('should be created', () => {
     expect(component).toBeTruthy();
@@ -56,14 +60,14 @@ describe('ProgressButtonComponent', () => {
   });
 
   it('should trigger clickEvent on button click', () => {
-    spyOn(component.clickEvent, 'emit').and.callThrough();
+    vi.spyOn(component.clickEvent, 'emit');
     button().nativeElement.click();
 
     expect(component.clickEvent.emit).toHaveBeenCalled();
   });
 
   it('should not trigger clickEvent when button is disabled', () => {
-    spyOn(component.clickEvent, 'emit').and.callThrough();
+    vi.spyOn(component.clickEvent, 'emit');
     fixture.componentRef.setInput('disabled', true);
     fixture.detectChanges();
     button().nativeElement.click();
@@ -72,7 +76,7 @@ describe('ProgressButtonComponent', () => {
   });
 
   it('should not trigger clickEvent when button is loading', () => {
-    spyOn(component.clickEvent, 'emit').and.callThrough();
+    vi.spyOn(component.clickEvent, 'emit');
     fixture.componentRef.setInput('loading', true);
     fixture.detectChanges();
     button().nativeElement.click();
