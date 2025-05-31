@@ -1,31 +1,26 @@
-import { ApplicationConfig, provideZonelessChangeDetection, Provider } from '@angular/core';
-import { provideRouter } from '@angular/router';
-import { routes } from './app.routes';
-import { provideClientHydration } from '@angular/platform-browser';
-import endpoints from './endpoints.json';
-import { ENDPOINT_CONFIG, EndpointConfig, endpointProviders, loggerProviders } from '@skt/core';
 import { provideHttpClient, withFetch } from '@angular/common/http';
+import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZonelessChangeDetection } from '@angular/core';
+import { provideClientHydration } from '@angular/platform-browser';
+import { provideRouter } from '@angular/router';
+import { EndpointConfig, provideEndpoints, provideLoggers } from '@skt/core';
+import { routes } from './app.routes';
+import endpoints from './endpoints.json';
 
 const endpointConfig: EndpointConfig = {
   endpoints,
   baseUrl: 'https://jsonplaceholder.typicode.com',
 };
 
-/**
- * Providers from Libs
- */
-const libProviders: Provider[] = [...endpointProviders, ...loggerProviders];
-
 export const appConfig: ApplicationConfig = {
   providers: [
+    /* Providers from Angular */
+    provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
     provideRouter(routes),
     provideClientHydration(),
     provideHttpClient(withFetch()),
-    {
-      provide: ENDPOINT_CONFIG,
-      useValue: endpointConfig,
-    },
-    ...libProviders,
+    /* Providers from libs */
+    provideEndpoints(endpointConfig),
+    provideLoggers(),
   ],
 };

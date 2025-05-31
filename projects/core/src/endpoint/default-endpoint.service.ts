@@ -1,7 +1,7 @@
 import { inject, Injectable, isDevMode } from '@angular/core';
 import { HttpParams, HttpParamsOptions } from '@angular/common/http';
 import { EndpointAttributes, EndpointService } from './endpoint.service';
-import { ENDPOINT_CONFIG, EndpointConfig } from './endpoint-tokens';
+import { ENDPOINT_CONFIG, EndpointConfig } from './endpoint-providers';
 
 @Injectable({
   providedIn: 'root',
