@@ -28,7 +28,7 @@
             "server": "projects/webapp/src/main.server.ts",
             "prerender": true,
             "ssr": {
-              "entry": "projects/webapp/server.ts"
+              "entry": "projects/webapp/src/server.ts"
             },
             "security": {
               "autoCsp": false

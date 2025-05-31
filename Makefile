@@ -15,6 +15,9 @@ install: clean ## Install dependencies
 	npm cache clean --force
 	npm install
 
+build: ## Build project
+	npm run build
+
 webapp-start: ## Start webapp
 	npm run start:webapp
 
