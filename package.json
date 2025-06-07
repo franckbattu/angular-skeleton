@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "build": "ng build @skt/core && ng build @skt/webapp",
-    "build:nossr": "ng build @skt/core && ng build --configuration production,noSsr @skt/webapp",
+    "build:nossr": "ng build @skt/core && ng build --configuration noSsr @skt/webapp",
+    "clean:imports": "ng generate @angular/core:cleanup-unused-imports",
     "core:storybook": "ng run @skt/core:storybook",
     "cy:run:webapp": "cypress run --project ./projects/webapp-e2e",
     "format": "prettier --check .",

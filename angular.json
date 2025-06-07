@@ -69,7 +69,8 @@
               "buildTarget": "@skt/webapp:build:production"
             },
             "development": {
-              "buildTarget": "@skt/webapp:build:development"
+              "buildTarget": "@skt/webapp:build:development",
+              "proxyConfig": "projects/webapp/src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

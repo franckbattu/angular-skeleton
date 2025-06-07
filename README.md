@@ -13,13 +13,11 @@ This project provides a skeleton for Angular-based projects using Angular Worksp
 
 ## Stack
 
-- Angular 18: Using experimental Zoneless mode for performance improvements.
-- Node.js 20: Latest LTS release, ensuring compatibility with modern tooling and best practices.
+- Angular 20: Using experimental Zoneless mode for performance improvements.
+- Node.js 24: Latest LTS release, ensuring compatibility with modern tooling and best practices.
 
 ## Installation
 
 ## Roadmap
 
-- Migrate Unit Testing from Jasmine/Karma to Jest or Web Test Runner
 - Integrate CI/CD Pipeline for Automated Testing and Deployment
-- Integrate Dockerfile for Production deployments
