@@ -8,7 +8,7 @@ import endpoints from './endpoints.json';
 
 const endpointConfig: EndpointConfig = {
   endpoints,
-  baseUrl: 'https://jsonplaceholder.typicode.com',
+  baseUrl: '/api',
 };
 
 export const appConfig: ApplicationConfig = {

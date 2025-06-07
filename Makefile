@@ -25,6 +25,7 @@ webapp-e2e: ## Run webapp e2e tests
 	npm run cy:run:webapp
 
 quality: ## Check quality on webapp
+	npm run clean:imports
 	npm run lint:code:fix
 	npm run lint:styles:fix
 	npm run format:fix
