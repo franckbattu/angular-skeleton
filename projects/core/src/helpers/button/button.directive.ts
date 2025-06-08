@@ -1,4 +1,4 @@
-import { Directive, HostBinding, Input } from '@angular/core';
+import { computed, Directive, input } from '@angular/core';
 
 export type ButtonTheme = 'primary' | 'outline-primary' | 'outline-dark' | 'warning';
 export type ButtonWeight = 'normal' | 'bold' | 'semi' | 'light';
@@ -57,34 +57,16 @@ const widthClasses: Record<ButtonWidth, string> = {
  */
 @Directive({
   selector: 'button[sktButton], a[sktButton]',
+  host: {
+    '[class]': 'classes()',
+  },
 })
 export class ButtonDirective {
-  private _theme: ButtonTheme = 'primary';
-  private _weight: ButtonWeight = 'normal';
-  private _width: ButtonWidth = 'auto';
+  theme = input<ButtonTheme>('primary');
+  weight = input<ButtonWeight>('normal');
+  width = input<ButtonWidth>('auto');
 
-  @Input() set theme(value: ButtonTheme) {
-    this._theme = value;
-    this.updateClasses();
-  }
-
-  @Input() set weight(value: ButtonWeight) {
-    this._weight = value;
-    this.updateClasses();
-  }
-
-  @Input() set width(value: ButtonWidth) {
-    this._width = value;
-    this.updateClasses();
-  }
-
-  @HostBinding('class') protected _classes = this.buildClasses();
-
-  private buildClasses(): string {
-    return `${themeClasses[this._theme]} ${weightClasses[this._weight]} ${widthClasses[this._width]}`;
-  }
-
-  private updateClasses() {
-    this._classes = this.buildClasses();
-  }
+  readonly classes = computed(() =>
+    [themeClasses[this.theme()], weightClasses[this.weight()], widthClasses[this.width()]].join(' '),
+  );
 }

@@ -1,17 +1,17 @@
-import { Component, provideZonelessChangeDetection } from '@angular/core';
+import { Component, input, provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ButtonDirective, ButtonTheme, ButtonWeight, ButtonWidth } from './button.directive';
 import { beforeEach, describe, expect, it } from 'vitest';
 import { By } from '@angular/platform-browser';
 
 @Component({
-  template: '<button sktButton [theme]="theme" [weight]="weight" [width]="width"></button>',
+  template: '<button sktButton [theme]="theme()" [weight]="weight()" [width]="width()"></button>',
   imports: [ButtonDirective],
 })
 class ButtonDirectiveComponent {
-  theme: ButtonTheme;
-  weight: ButtonWeight;
-  width: ButtonWidth;
+  theme = input<ButtonTheme>('primary');
+  weight = input<ButtonWeight>('normal');
+  width = input<ButtonWidth>('auto');
 }
 
 describe('ButtonDirective', () => {
@@ -32,12 +32,12 @@ describe('ButtonDirective', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should apply classes based on inputs', () => {
-    component.theme = 'outline-primary';
-    component.weight = 'bold';
-    component.width = 'full';
+  it('should apply classes based on inputs', async () => {
+    fixture.componentRef.setInput('theme', 'outline-primary');
+    fixture.componentRef.setInput('weight', 'bold');
+    fixture.componentRef.setInput('width', 'full');
 
-    fixture.detectChanges();
+    await fixture.whenStable();
 
     const element = fixture.debugElement.query(By.css('button'));
     expect(element.classes).toEqual(
