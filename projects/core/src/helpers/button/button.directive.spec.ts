@@ -1,7 +1,7 @@
 import { Component, provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ButtonDirective, ButtonTheme, ButtonWeight, ButtonWidth } from './button.directive';
-import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 import { By } from '@angular/platform-browser';
 
 @Component({
@@ -27,9 +27,6 @@ describe('ButtonDirective', () => {
     fixture = TestBed.createComponent(ButtonDirectiveComponent);
     component = fixture.componentInstance;
   });
-
-  // TODO: remove after update to Angular 20
-  afterEach(() => TestBed.resetTestingModule());
 
   it('should be created', () => {
     expect(component).toBeTruthy();

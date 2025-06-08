@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { Component, provideZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
@@ -34,9 +34,6 @@ describe('AppComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-
-  // TODO: remove after update to Angular 20
-  afterEach(() => TestBed.resetTestingModule());
 
   it('should create the app', () => {
     expect(component).toBeTruthy();

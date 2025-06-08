@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SpinnerComponent } from './spinner.component';
 import { By } from '@angular/platform-browser';
 import { provideZonelessChangeDetection } from '@angular/core';
-import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 
 describe('SpinnerComponent', () => {
   let fixture: ComponentFixture<SpinnerComponent>;
@@ -19,9 +19,6 @@ describe('SpinnerComponent', () => {
     fixture.componentRef.setInput('size', 'lg');
     fixture.detectChanges();
   });
-
-  // TODO: remove after update to Angular 20
-  afterEach(() => TestBed.resetTestingModule());
 
   it('should be created', () => {
     expect(component).toBeTruthy();

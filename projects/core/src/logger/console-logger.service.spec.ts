@@ -1,7 +1,7 @@
 import { ConsoleLoggerService } from './console-logger.service';
 import { inject, TestBed } from '@angular/core/testing';
 import { provideZonelessChangeDetection } from '@angular/core';
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 describe('ConsoleLoggerService', () => {
   let service: ConsoleLoggerService;
@@ -13,9 +13,6 @@ describe('ConsoleLoggerService', () => {
 
     service = TestBed.inject(ConsoleLoggerService);
   });
-
-  // TODO: remove after update to Angular 20
-  afterEach(() => TestBed.resetTestingModule());
 
   it('should ConsoleLoggerService be injected', inject([ConsoleLoggerService], (service: ConsoleLoggerService) =>
     expect(service).toBeTruthy(),

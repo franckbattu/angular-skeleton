@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProgressButtonComponent } from './progress-button.component';
 import { Component, provideZonelessChangeDetection } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 @Component({
   template: `<skt-progress-button [loading]="true" [disabled]="false">Test</skt-progress-button>`,
@@ -28,9 +28,6 @@ describe('ProgressButtonComponent', () => {
     fixture.componentRef.setInput('disabled', false);
     fixture.detectChanges();
   });
-
-  // TODO: remove after update to Angular 20
-  afterEach(() => TestBed.resetTestingModule());
 
   it('should be created', () => {
     expect(component).toBeTruthy();

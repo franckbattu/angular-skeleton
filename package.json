@@ -18,7 +18,7 @@
     "ng": "ng",
     "serve:ssr:webapp": "node dist/webapp/server/server.mjs",
     "start:webapp": "ng serve --project @skt/webapp",
-    "test": "ng test",
+    "test": "ng test --watch false",
     "tools:check-format": "zx tools/check-format.mjs",
     "watch": "ng build --watch --configuration development"
   },
@@ -55,8 +55,8 @@
     "@storybook/test": "^8.6.14",
     "@types/express": "^5.0.2",
     "@types/node": "^22.15.29",
-    "@typescript-eslint/eslint-plugin": "^8.33.0",
-    "angular-eslint": "^19.6.0",
+    "@typescript-eslint/eslint-plugin": "^8.33.1",
+    "angular-eslint": "^20.0.0",
     "autoprefixer": "^10.4.21",
     "chalk": "^5.4.1",
     "cypress": "^14.4.0",
@@ -78,7 +78,7 @@
     "stylelint-config-standard-scss": "^15.0.1",
     "tailwindcss": "^4.1.8",
     "typescript": "^5.8.3",
-    "typescript-eslint": "^8.33.0",
+    "typescript-eslint": "^8.33.1",
     "vitest": "^3.1.4",
     "yaml": "^2.8.0",
     "zx": "^8.5.4"

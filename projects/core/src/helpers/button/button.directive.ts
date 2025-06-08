@@ -78,7 +78,7 @@ export class ButtonDirective {
     this.updateClasses();
   }
 
-  @HostBinding('class') private _classes = this.buildClasses();
+  @HostBinding('class') protected _classes = this.buildClasses();
 
   private buildClasses(): string {
     return `${themeClasses[this._theme]} ${weightClasses[this._weight]} ${widthClasses[this._width]}`;
